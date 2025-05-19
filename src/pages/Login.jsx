@@ -12,7 +12,6 @@ function Login() {
   
   const { login, error, user } = useAuth();
   
-  // Redirect if already logged in
   useEffect(() => {
     if (user) {
       navigate('/profile');
@@ -27,7 +26,6 @@ function Login() {
       await login(phone, password, rememberMe);
       navigate('/profile');
     } catch (err) {
-      // The error is handled in the context
       console.error('Login failed:', err);
     } finally {
       setLoading(false);
@@ -35,7 +33,6 @@ function Login() {
   };
 
   const formatPhoneNumber = (value) => {
-    // Allow only numbers
     const phoneNumber = value.replace(/[^\d]/g, '');
     setPhone(phoneNumber);
   };

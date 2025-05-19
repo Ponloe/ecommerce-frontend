@@ -68,3 +68,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+html {
+  overflow-y: scroll;
+}
+
+/* Prevent layout shifts due to scrollbar */
+#root {
+  max-width: 100%;
+  width: 100%;
+}

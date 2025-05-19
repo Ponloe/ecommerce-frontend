@@ -11,6 +11,27 @@ function Header() {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
 
+  // Add this effect to handle the scrollbar width issue
+  useEffect(() => {
+    // Calculate scrollbar width
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    
+    // Add padding-right when scrollbar is present to prevent layout shift
+    function handleResize() {
+      document.body.style.overflowY = 'scroll';
+      document.body.style.width = `calc(100vw - ${scrollbarWidth}px)`;
+    }
+    
+    // Call once and add listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     // Fetch top-level categories
     axios.get('/categories')
@@ -45,7 +66,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white shadow-md">
+    <header className="bg-white shadow-md sticky top-0 z-20 w-full">    
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -106,8 +127,8 @@ function Header() {
                       </Link>
                       <button 
                         onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
+                        className="block w-full text-left px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 rounded"
+                        >
                         Sign out
                       </button>
                     </div>
@@ -134,7 +155,7 @@ function Header() {
           </div>
         </div>
         
-        {/* Mobile menu */}
+        {/* Mobile menu - set absolute positioning */}
         {isMenuOpen && (
           <nav className="mt-4 md:hidden">
             <Link to="/" className="block py-2 hover:text-indigo-600">Home</Link>

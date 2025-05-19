@@ -3,8 +3,8 @@ import Button from '../common/Button';
 
 function ProductCard({ product }) {
   return (
-    <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-      <Link to={`/products/${product.id}`}>
+    <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-[380px] flex flex-col">
+      <Link to={`/products/${product.id}`} className="h-48 flex-shrink-0">
         <div className="h-48 overflow-hidden bg-gray-100">
           {product.image ? (
             <img 
@@ -20,18 +20,20 @@ function ProductCard({ product }) {
         </div>
       </Link>
       
-      <div className="p-4">
-        <Link to={`/products/${product.id}`}>
-          <h3 className="text-lg font-medium text-gray-900 hover:text-indigo-600 mb-1 truncate text-white">
-            {product.name}
-          </h3>
-        </Link>
-        
-        {product.brand && (
-          <Link to={`/brands/${product.brand.id}`} className="text-sm text-gray-600 hover:text-indigo-600">
-            {product.brand.name}
+      <div className="p-4 flex-grow flex flex-col justify-between">
+        <div>
+          <Link to={`/products/${product.id}`}>
+            <h3 className="text-lg font-medium text-gray-900 hover:text-indigo-600 mb-1 truncate text-white">
+              {product.name}
+            </h3>
           </Link>
-        )}
+          
+          {product.brand && (
+            <Link to={`/brands/${product.brand.id}`} className="text-sm text-gray-600 hover:text-indigo-600">
+              {product.brand.name}
+            </Link>
+          )}
+        </div>
         
         <div className="mt-2 flex justify-between items-center">
           <span className="text-lg font-bold">${product.price}</span>
@@ -41,7 +43,6 @@ function ProductCard({ product }) {
             >
             Add
           </button>
-
         </div>
       </div>
     </div>
