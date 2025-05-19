@@ -56,7 +56,7 @@ function Register() {
       setLoading(false);
     }
   };
-  
+
   const formatPhoneNumber = (value) => {
     // Allow only numbers
     const phoneNumber = value.replace(/[^\d]/g, '');
@@ -82,7 +82,7 @@ function Register() {
             <input
               id="name"
               type="text"
-              className={`w-full px-3 py-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+              className={`w-full px-3 py-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black`}
               placeholder="Enter your full name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -98,7 +98,7 @@ function Register() {
             <input
               id="phone"
               type="tel"
-              className={`w-full px-3 py-2 border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+              className={`w-full px-3 py-2 border ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black`}
               placeholder="Enter your phone number"
               value={phone}
               onChange={(e) => formatPhoneNumber(e.target.value)}
@@ -114,7 +114,7 @@ function Register() {
             <input
               id="password"
               type="password"
-              className={`w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+              className={`w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black`}
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -131,7 +131,7 @@ function Register() {
             <input
               id="password_confirmation"
               type="password"
-              className={`w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500`}
+              className={`w-full px-3 py-2 border ${errors.password ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black`}
               placeholder="••••••••"
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
@@ -153,7 +153,7 @@ function Register() {
       </div>
 
       <div className="text-center mt-6">
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-white">
           Already have an account?{' '}
           <Link to="/login" className="text-indigo-600 hover:underline">
             Sign in

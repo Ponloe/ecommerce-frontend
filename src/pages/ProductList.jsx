@@ -82,7 +82,7 @@ function ProductList() {
       {/* Filters */}
       <aside className="w-full md:w-64">
         <div className="bg-white p-4 rounded shadow-sm mb-4">
-          <h3 className="font-bold text-lg mb-3">Categories</h3>
+          <h3 className="font-bold text-lg mb-3 text-black">Categories</h3>
           <ul className="space-y-2">
             <li>
               <button 
@@ -106,7 +106,7 @@ function ProductList() {
         </div>
         
         <div className="bg-white p-4 rounded shadow-sm">
-          <h3 className="font-bold text-lg mb-3">Brands</h3>
+          <h3 className="font-bold text-lg mb-3 text-black">Brands</h3>
           <ul className="space-y-2">
             <li>
               <button 

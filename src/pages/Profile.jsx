@@ -104,7 +104,7 @@ function Profile() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-black"
               placeholder="Enter your full name"
             />
           </div>
@@ -119,7 +119,7 @@ function Profile() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-black"
               placeholder="Enter your email"
             />
           </div>
@@ -135,7 +135,7 @@ function Profile() {
               value={formData.phone}
               onChange={handleChange}
               disabled
-              className="w-full px-4 py-2 border rounded-md bg-gray-100"
+              className="w-full px-4 py-2 border rounded-md bg-gray-100 text-black"
               placeholder="Your phone number"
             />
             <p className="text-sm text-gray-500 mt-1">Phone number cannot be changed</p>
@@ -151,7 +151,7 @@ function Profile() {
               value={formData.address}
               onChange={handleChange}
               rows="3"
-              className="w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-black"
               placeholder="Enter your shipping address"
             />
           </div>

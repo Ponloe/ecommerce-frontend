@@ -59,7 +59,7 @@ function Login() {
             <input
               id="phone"
               type="tel"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
               placeholder="Enter your phone number"
               value={phone}
               onChange={(e) => formatPhoneNumber(e.target.value)}
@@ -74,7 +74,7 @@ function Login() {
             <input
               id="password"
               type="password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -116,7 +116,7 @@ function Login() {
       </div>
 
       <div className="text-center mt-6">
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-white">
           Don't have an account?{' '}
           <Link to="/register" className="text-indigo-600 hover:underline">
             Create an account

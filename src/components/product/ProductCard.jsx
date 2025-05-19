@@ -22,7 +22,7 @@ function ProductCard({ product }) {
       
       <div className="p-4">
         <Link to={`/products/${product.id}`}>
-          <h3 className="text-lg font-medium text-gray-900 hover:text-indigo-600 mb-1 truncate">
+          <h3 className="text-lg font-medium text-gray-900 hover:text-indigo-600 mb-1 truncate text-white">
             {product.name}
           </h3>
         </Link>
@@ -35,12 +35,13 @@ function ProductCard({ product }) {
         
         <div className="mt-2 flex justify-between items-center">
           <span className="text-lg font-bold">${product.price}</span>
-          <Button 
-            size="small" 
+          <button
+            className="px-2 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
             onClick={() => console.log('Add to cart:', product.id)}
-          >
-            Add to Cart
-          </Button>
+            >
+            Add
+          </button>
+
         </div>
       </div>
     </div>

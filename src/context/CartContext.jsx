@@ -8,7 +8,6 @@ export const CartProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
   
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -18,7 +17,6 @@ export const CartProvider = ({ children }) => {
       const existingItemIndex = prevCart.findIndex(item => item.id === product.id);
       
       if (existingItemIndex > -1) {
-        // Item exists, update quantity
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex] = {
           ...updatedCart[existingItemIndex],
@@ -26,7 +24,6 @@ export const CartProvider = ({ children }) => {
         };
         return updatedCart;
       } else {
-        // Item doesn't exist, add new item
         return [...prevCart, { ...product, quantity }];
       }
     });
