@@ -10,7 +10,6 @@ export function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check if user is logged in on initial load
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
@@ -18,15 +17,23 @@ export function AuthProvider({ children }) {
         const savedUser = localStorage.getItem('user');
         
         if (token) {
-          // Set authorization header for all future requests
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
           
-          // Try to get user info to validate token
-          const response = await axios.get('/user');
-          setUser(response.data);
-          setIsAuthenticated(true);
+          // Check if API is available, otherwise use saved user
+          try {
+            const response = await axios.get('/user');
+            setUser(response.data);
+            setIsAuthenticated(true);
+          } catch (apiErr) {
+            console.warn('Could not verify with API, using stored credentials');
+            if (savedUser) {
+              setUser(JSON.parse(savedUser));
+              setIsAuthenticated(true);
+            } else {
+              throw apiErr; // No saved user to fall back on
+            }
+          }
         } else if (savedUser) {
-          // If we have user but no token, try to restore the session
           setUser(JSON.parse(savedUser));
           setIsAuthenticated(true);
         }
@@ -42,15 +49,13 @@ export function AuthProvider({ children }) {
         setLoading(false);
       }
     };
-
+  
     checkAuthStatus();
   }, []);
 
   const login = async (phone, password, remember = false) => {
     try {
       setError(null);
-      
-      // Get CSRF cookie for Laravel Sanctum
       await axiosRaw.get('http://localhost:8000/sanctum/csrf-cookie', {
         withCredentials: true
       });
@@ -132,7 +137,8 @@ export function AuthProvider({ children }) {
     isAuthenticated,
     login,
     register,
-    logout
+    logout,
+    setUser
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
