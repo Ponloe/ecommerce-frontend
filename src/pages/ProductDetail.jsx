@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from '../api/axios';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
+import { useCart } from '../context/CartContext';
+import { toast } from 'react-toastify';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -10,7 +12,9 @@ function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useCart();
 
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -37,9 +41,10 @@ function ProductDetail() {
   };
 
   const handleAddToCart = () => {
-    console.log(`Adding ${quantity} of product ${id} to cart`);
-    // This would use the CartContext in a real implementation
+    addToCart(product, quantity);
+    toast.success(`Added ${quantity} ${product.name} to cart`);
   };
+
 
   if (loading) return <Loading />;
   
@@ -89,7 +94,7 @@ function ProductDetail() {
         <div className="bg-gray-100 rounded-lg overflow-hidden">
           {product.image ? (
             <img 
-              src={`http://localhost:8000/storage/${product.image}`}
+              src={`http://192.168.0.158:8000/storage/${product.image}`}
               alt={product.name}
               className="w-full h-auto object-cover"
             />

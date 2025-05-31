@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
   const login = async (phone, password, remember = false) => {
     try {
       setError(null);
-      await axiosRaw.get('http://localhost:8000/sanctum/csrf-cookie', {
+      await axiosRaw.get('http://192.168.0.158:8000/sanctum/csrf-cookie', {
         withCredentials: true
       });
       
@@ -89,7 +89,7 @@ export function AuthProvider({ children }) {
       setError(null);
       
       // Get CSRF cookie for Laravel Sanctum
-      await axiosRaw.get('http://localhost:8000/sanctum/csrf-cookie', {
+      await axiosRaw.get('http://192.168.0.158:8000/sanctum/csrf-cookie', {
         withCredentials: true
       });
       

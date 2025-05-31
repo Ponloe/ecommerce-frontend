@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import axios from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 
 function Header() {
   const [categories, setCategories] = useState([]);
@@ -10,6 +11,7 @@ function Header() {
   const profileDropdownRef = useRef(null);
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
+  const { getCartCount } = useCart();
 
   // Add this effect to handle the scrollbar width issue
   useEffect(() => {
@@ -91,10 +93,15 @@ function Header() {
           
           {/* User Actions */}
           <div className="flex items-center space-x-4">
-            <Link to="/cart" className="hover:text-indigo-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
+            <Link to="/cart" className="hover:text-indigo-600 relative">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {getCartCount() > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {getCartCount()}
+                    </span>
+                )}
             </Link>
             
             {isAuthenticated ? (
